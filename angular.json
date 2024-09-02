@@ -1,0 +1,152 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ZapDashboard": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/zap-dashboard",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/assets/img",
+                "output": "/assets/img/"
+              }
+            ],
+            "styles": [
+              // "src/vendors/simplebar/simplebar.min.css",
+              // "src/assets/css/theme-rtl.min.css",
+              // "src/assets/css/theme.min.css",
+              // "src/assets/css/user-rtl.min.css",
+              // "src/assets/css/user.min.css",
+              "src/vendors/leaflet/leaflet.css",
+              "src/vendors/leaflet.markercluster/MarkerCluster.css",
+              "src/vendors/leaflet.markercluster/MarkerCluster.Default.css"
+            ],
+            "scripts": [
+              "src/vendors/simplebar/simplebar.min.js",
+              "src/assets/js/config.js",
+              "src/vendors/popper/popper.min.js",
+              "src/vendors/bootstrap/bootstrap.min.js",
+              "src/vendors/anchorjs/anchor.min.js",
+              "src/vendors/is/is.min.js",
+              "src/vendors/fontawesome/all.min.js",
+              "src/vendors/lodash/lodash.min.js",
+              "src/vendors/list.js/list.min.js",
+              "src/vendors/feather-icons/feather.min.js",
+              "src/vendors/dayjs/dayjs.min.js",
+              "src/vendors/leaflet/leaflet.js",
+              "src/vendors/leaflet.markercluster/leaflet.markercluster.js",
+              "src/vendors/leaflet.tilelayer.colorfilter/leaflet-tilelayer-colorfilter.min.js",
+              "src/assets/js/phoenix.js",
+              "src/vendors/echarts/echarts.min.js",
+              "src/assets/js/ecommerce-dashboard.js"
+            ],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ZapDashboard:build:production"
+            },
+            "development": {
+              "buildTarget": "ZapDashboard:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/vendors/simplebar/simplebar.min.css",
+              "src/assets/css/theme-rtl.min.css",
+              "src/assets/css/theme.min.css",
+              "src/assets/css/user-rtl.min.css",
+              "src/assets/css/user.min.css",
+              "src/vendors/leaflet/leaflet.css",
+              "src/vendors/leaflet.markercluster/MarkerCluster.css",
+              "src/vendors/leaflet.markercluster/MarkerCluster.Default.css",
+            ],
+            "scripts": [
+              "src/vendors/simplebar/simplebar.min.js",
+              "src/assets/js/config.js",
+              "src/vendors/popper/popper.min.js",
+              "src/vendors/bootstrap/bootstrap.min.js",
+              "src/vendors/anchorjs/anchor.min.js",
+              "src/vendors/is/is.min.js",
+              "src/vendors/fontawesome/all.min.js",
+              "src/vendors/lodash/lodash.min.js",
+              "src/vendors/list.js/list.min.js",
+              "src/vendors/feather-icons/feather.min.js",
+              "src/vendors/dayjs/dayjs.min.js",
+              "src/vendors/leaflet/leaflet.js",
+              "src/vendors/leaflet.markercluster/leaflet.markercluster.js",
+              "src/vendors/leaflet.tilelayer.colorfilter/leaflet-tilelayer-colorfilter.min.js",
+              "src/assets/js/phoenix.js",
+              "src/vendors/echarts/echarts.min.js",
+              "src/assets/js/ecommerce-dashboard.js"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
